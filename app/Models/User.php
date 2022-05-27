@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 	public function skills(){
-		return $this->belongsToMany(Skill::class)->withPivot('point');
+		return $this->belongsToMany(Skill::class)->withPivot('point')->withTimestamps();
 	}
 	public function departments(){
 		return $this->belongsTo(Department::class);

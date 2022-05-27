@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TextController;
 
@@ -26,6 +27,10 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/home/', [UserController::class, 'home'])->name('users.home');
 	Route::get('/users/{id}/skill', [UserController::class, 'skill'])->name('users.skill');
 	Route::get('/users/{id}/skill/edit', [UserController::class, 'edit'])->name('users.edit');
+});
+
+Route::group(["middleware" => ["auth", "can:leader-higher"]], function(){
+    Route::get('/users', [UserManagementController::class, "index"])->name("users.index");
 });
 
 require __DIR__.'/auth.php';
