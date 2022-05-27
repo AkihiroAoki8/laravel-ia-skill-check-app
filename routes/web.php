@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,5 +21,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::group(["middleware" => ["auth", "can:leader-higher"]], function(){
+    Route::get('/users', [UserManagementController::class, "index"])->name("users.index");
+});
 
 require __DIR__.'/auth.php';
