@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/skills/index',[SkillController::class,'index'])->name('skills.index');
+Route::get('/skills/create',[SkillController::class,'create'])->name('skills.create');
+Route::post('/skills/store',[SkillController::class,'store'])->name('skills.store');
 
 Route::get('/', function () {
     return view('welcome');
