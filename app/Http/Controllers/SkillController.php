@@ -13,6 +13,8 @@ class SkillController extends Controller
 
         return view('skills.index',compact('skills'));
     }
+
+    
     public function create(){
         return view('skills.create');
     }
