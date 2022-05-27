@@ -23,11 +23,11 @@ class UserSeeder extends Seeder
             ->create()
             ->each(
                 function(User $user) use ($skills){
-                    $ran = rand(1,10);
+                    $random = rand(1,10);
                     $user->skills()->point = rand(1,10);
 
                     $user->skills()->attach(
-                        $skills->random($ran)->pluck("id")->toArray(),
+                        $skills->random($random)->pluck("id")->toArray(),
                     );
                 }
             );

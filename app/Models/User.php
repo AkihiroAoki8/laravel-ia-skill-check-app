@@ -44,6 +44,6 @@ class User extends Authenticatable
 
     public function skills()
     {
-        return $this->belongsToMany('App\Models\Skill')->withTimestamps();
+        return $this->belongsToMany(Skill::class)->withTimestamps();
     }
 }
