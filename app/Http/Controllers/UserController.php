@@ -15,7 +15,7 @@ class UserController extends Controller
 	public function skill($id){
 //		$user   = User::findOrFail(Auth::id());
 		$user   = User::findOrFail($id);
-		return view('users.skill', compact('user');
+		return view('users.skill', compact('user'));
 	}
 //	public function edit($id){
 //	}
