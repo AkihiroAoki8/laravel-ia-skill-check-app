@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Department;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/department/index',[DepartmentController::class,'index'])->name('departments.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
