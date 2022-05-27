@@ -14,9 +14,29 @@ use App\Http\Controllers\SkillController;
 |
 */
 
-Route::get('/skills/index',[SkillController::class,'index'])->name('skills.index');
-Route::get('/skills/create',[SkillController::class,'create'])->name('skills.create');
-Route::post('/skills/store',[SkillController::class,'store'])->name('skills.store');
+
+Route::middleware(['auth'])->group(function(){
+
+
+    Route::group(['middleware' => 'can:user_higher'], function () {
+        Route::get('/skills/index',[SkillController::class,'index'])->name('skills.index');
+    });
+
+    Route::group(['middleware' => 'can:admin'], function () {
+        Route::get('/skills/create',[SkillController::class,'create'])->name('skills.create');
+        Route::post('/skills/store',[SkillController::class,'store'])->name('skills.store');
+    });
+    
+   
+});
+
+    // Route::get('/skills/index',[SkillController::class,'index'])->name('skills.index');
+    // Route::get('/skills/create',[SkillController::class,'create'])->name('skills.create');
+    // Route::post('/skills/store',[SkillController::class,'store'])->name('skills.store');
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
