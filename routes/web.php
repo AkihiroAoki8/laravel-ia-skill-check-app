@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TextController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function(){
-	Route::get('/home/', [UserController::class, 'index'])->name('users.index');
+	Route::get('/home/', [UserController::class, 'home'])->name('users.home');
 	Route::get('/users/{id}/skill', [UserController::class, 'skill'])->name('users.skill');
 	Route::get('/users/{id}/skill/edit', [UserController::class, 'edit'])->name('users.edit');
 });
