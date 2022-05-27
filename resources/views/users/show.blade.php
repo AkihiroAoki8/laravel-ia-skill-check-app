@@ -1,0 +1,21 @@
+<div>
+    <h1>ユーザー詳細</h1>
+    <div>
+        <div>
+            <h2>名前</h2>
+            <div>{{$user->name}}</div>
+        </div>
+        <div>
+            <h2>email</h2>
+            <div>{{$user->email}}</div>
+        </div>
+        <div>
+            <h2>権限</h2>
+            <div>{{config("const.role." . $user->role)}}</div>
+        </div>
+        <div>
+            <h2>部署</h2>
+            <div>{{$user->department_id}}</div>
+        </div>
+    </div>
+</div>

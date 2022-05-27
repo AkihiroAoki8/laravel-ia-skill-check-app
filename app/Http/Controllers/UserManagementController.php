@@ -11,4 +11,9 @@ class UserManagementController extends Controller
         $users = User::all();
         return view("users/index", compact("users"));
     }
+
+    public function show($id){
+        $user = User::find($id);
+        return view("users/show", compact("user"));
+    }
 }

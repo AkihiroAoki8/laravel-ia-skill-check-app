@@ -24,6 +24,7 @@ Route::get('/dashboard', function () {
 
 Route::group(["middleware" => ["auth", "can:leader-higher"]], function(){
     Route::get('/users', [UserManagementController::class, "index"])->name("users.index");
+    Route::get('/users/{id}', [UserManagementController::class, "show"])->name("users.show");
 });
 
 require __DIR__.'/auth.php';

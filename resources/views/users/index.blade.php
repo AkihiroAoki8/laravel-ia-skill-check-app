@@ -15,17 +15,9 @@
             </tr>
             @foreach($users as $user)
                 <tr>
-                    <td><a href="">{{$user->name}}</a></td>
+                    <td><a href="{{Route('users.show', ['id' => $user->id ])}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
-                    <td>
-                        @if($user->role == 1)
-                        管理者
-                        @elseif($user->role == 5)
-                        部署リーダー
-                        @else
-                        一般社員
-                        @endif
-                    </td>
+                    <td>{{config("const.role." . $user->role)}}</td>
                     <td>{{$user->department_id}}</td>
                 </tr>
             @endforeach
