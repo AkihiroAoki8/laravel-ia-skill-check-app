@@ -29,6 +29,7 @@
                     @endforeach
                 </tbody>
             </table>
+            <a href="{{Route('user-manage.create')}}">社員を追加</a>
         </div>
     </div>
 </x-app-layout>
