@@ -9,15 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-	public function home(){
-		$user = User::findOrFail(Auth::id());
-		return view('users.home', compact('user'));
-	}
 	public function skill($id){
-//		$user   = User::findOrFail(Auth::id());
 		$user   = User::findOrFail($id);
 		return view('users.skill', compact('user'));
 	}
-//	public function edit($id){
-//	}
+	public function edit($id){
+		$user	= User::findOrFail($id);
+		return view('users.edit', compact('user'));
+	}
 }
