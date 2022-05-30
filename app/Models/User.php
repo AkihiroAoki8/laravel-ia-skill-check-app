@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
   
     public function skills(){
-      return $this->belongsToMany(Skill::class)->withPivot('point')->withTimestamps();
+      return $this->belongsToMany(Skill::class)->withPivot('point', 'pending_point')->withTimestamps();
     }
  
     public function departments(){

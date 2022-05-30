@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign("skill_id")->references("id")->on("skills")->onDelete("cascade");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
             $table->integer("point")->default(1);
+			$table->integer("pending_point")->nullable();
             $table->boolean("is_approved")->nullable();
             $table->unsignedBigInteger("approve_user_id")->nullable();
             $table->foreign("approve_user_id")->references("id")->on("users")->onDelete("cascade");
