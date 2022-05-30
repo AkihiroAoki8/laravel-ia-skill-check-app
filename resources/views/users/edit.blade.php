@@ -10,7 +10,7 @@
     	</div>
 	@endif
 
-	<form method="get" action="{{ route('request.index', [ 'id' => $user->id ])}}">
+	<form method="post" action="{{ route('users.request', [ 'id' => $user->id ])}}">
  		@csrf
 		@foreach($user->skills as $skill)
 			スキル名: {{ $skill->name }}<br>

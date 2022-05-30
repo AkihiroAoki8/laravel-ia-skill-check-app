@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function(){
 	Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 	Route::get('/users/{id}/skill', [UserController::class, 'skill'])->name('users.skill');
 	Route::get('/users/{id}/skill/edit', [UserController::class, 'edit'])->name('users.edit');
+	Route::post('/texts/{id}', [UserController::class, 'request'])->name('users.request');
 });
 
 Route::group(["middleware" => ["auth", "can:leader-higher"]], function(){
