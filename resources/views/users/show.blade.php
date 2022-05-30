@@ -9,4 +9,8 @@
         <div>ポイント：{{$skill->pivot->point}}</div>
         @endforeach
     </div>
+    <div>
+        <a href="{{Route('user-manage.edit', ['id' => $user->id])}}">編集</a>
+        <a href="{{Route('user-manage.delete', ['id' => $user->id])}}">削除</a>
+    </div>
 </div>

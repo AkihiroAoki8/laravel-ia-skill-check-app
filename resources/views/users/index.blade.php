@@ -15,7 +15,7 @@
             </tr>
             @foreach($users as $user)
                 <tr>
-                    <td><a href="{{Route('users.show', ['id' => $user->id ])}}">{{$user->name}}</a></td>
+                    <td><a href="{{Route('user-manage.show', ['id' => $user->id ])}}">{{$user->name}}</a></td>
                     <td>{{$user->email}}</td>
                     <td>{{config("const.role." . $user->role)}}</td>
                     <td>{{$user->department_id}}</td>
