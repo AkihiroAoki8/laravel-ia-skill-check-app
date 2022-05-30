@@ -7,7 +7,6 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Skill;
 
-
 class UserSeeder extends Seeder
 {
     /**
