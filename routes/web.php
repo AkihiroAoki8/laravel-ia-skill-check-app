@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::middleware(['auth'])->group(function(){
-	Route::get('/home', [UserController::class, 'home'])->name('users.home');
+	Route::get('/home', [HomeController::class, 'index'])->name('home.index');
 	Route::get('/users/{id}/skill', [UserController::class, 'skill'])->name('users.skill');
 	Route::get('/users/{id}/skill/edit', [UserController::class, 'edit'])->name('users.edit');
 });
