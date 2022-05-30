@@ -37,10 +37,10 @@ class UserManagementController extends Controller
             'email_verified_at' => now(),
             "password" => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
             "role" => $request["role"],
-            "department" => $request["department_id"]
+            "department_id" => $request["department"]
         ]);
 
-        return redirect()->route('users.index');
+        return redirect()->route('user-manage.index');
     }
 
     public function edit($id){
