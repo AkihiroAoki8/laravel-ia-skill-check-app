@@ -41,9 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function skills()
-    {
-        return $this->belongsToMany(Skill::class)->withTimestamps();
-    }
+	public function skills(){
+		return $this->belongsToMany(Skill::class)->withPivot('point')->withTimestamps();
+	}
+	public function departments(){
+		return $this->belongsTo(Department::class);
+	}
 }
