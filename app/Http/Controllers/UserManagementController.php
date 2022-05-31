@@ -18,6 +18,31 @@ class UserManagementController extends Controller
         return view("user-manage/show", compact("user"));
     }
 
+    public function create(){
+        $departments = ["営業部", "システム部", "マーケティング部", "デザイン部", "組織運営部", "新規事業開発部", "システム管理部", "飛び込み営業部", "経理部", "窓際社員部"];
+        return view("user-manage/create", compact("departments"));
+    }
+
+    public function store(Request $request){
+        $validated = $request->validate([
+            "name" => "required",
+            "email" => "required",
+            "role" => "required",
+            "department" => "required"
+        ]);
+
+        User::create([
+            "name" => $request["name"],
+            "email" => $request["email"],
+            'email_verified_at' => now(),
+            "password" => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi',
+            "role" => $request["role"],
+            "department_id" => $request["department"]
+        ]);
+
+        return redirect()->route('user-manage.index');
+    }
+
     public function edit($id){
         $user = User::findOrFail($id);
         $departments = ["営業部", "システム部", "マーケティング部", "デザイン部", "組織運営部", "新規事業開発部", "システム管理部", "飛び込み営業部", "経理部", "窓際社員部"];
