@@ -25,11 +25,21 @@ class DepartmentController extends Controller
     }
 
     // 登録処理
-    public function store(Request $request){
+    public function store(Request $request)
+    {
+        department::create([
+            'id' => $request['id'],
+            'name' => $request['name'],
+            'is_displayed' => $request['is_displayed'], 
+        ]);
 
-        $registerUser = $this->name->InsertUser($request);
 
-        return redirect()->route('department.index');
+        session()->flash(
+            'flash_message',
+            '登録完了'
+        );
+
+        return redirect()->route('departments.index');
     }
 
     // 詳細画面の表示
@@ -45,25 +55,36 @@ class DepartmentController extends Controller
     public function edit($id){
 
         $department = Department::find($id);
-
-        return view('department.show',compact('department'));
+        $show = $department->is_displayed;
+        return view('department.edit',compact('department','show'));
     }
 
     // 更新
-    public function upadate(Request $request, $id){
+    // public function upadate(Request $request, $id){
 
-        $department= Department::find($id);
-        $update = $this->department->updateDepartment($request,$id);
+    //     $department= Department::find($id);
+    //     $update = $this->department->updateDepartment($request,$id);
 
-        return redirect()->route('department.index');
+    //     return redirect()->route('department.index');
+    // }
+
+    public function update($id, Request $request)
+    {
+        $department = Department::findOrFail($id);
+        // $department->id = $request['id'];
+        $department->name = $request['name'];
+        $department->is_displayed = $request['is_displayed'];
+        $department->save();
+
+
+        session()->flash('flash_message', '更新完了');
+        return redirect()->route('departments.index');
     }
 
     // 削除
     public function delete(Request $request, $id){
 
-        $department = Department::find($id);
-        $delete = $this->department->deleteDepartment($request,$id);
-
-        return redirect()->route('department.index');
+        $department = Department::findOrFail($id)->delete();
+        return redirect()->route('departments.index');
     }
 }

@@ -2,7 +2,6 @@
 
 id:{{$department->id}}<br>
 部署:{{$department->name}}<br>
-表示・非表示{{$department->is_displayed}}<br>
 
 
 <a href="{{ route('departments.index') }}">部署一覧</a>

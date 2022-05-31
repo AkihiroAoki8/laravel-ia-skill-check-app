@@ -20,9 +20,9 @@ Route::get('/', function () {
 });
 
 Route::get('/department/index',[DepartmentController::class,'index'])->name('departments.index');
-Route::get('/department/edit',[DepartmentController::class,'edit'])->name('departments.edit');
+Route::get('/department/{id}/edit',[DepartmentController::class,'edit'])->name('departments.edit');
 Route::get('/department/create',[DepartmentController::class,'create'])->name('departments.create');
-Route::get('/department/store',[DepartmentController::class,'store'])->name('departments.store');
+Route::post('/department/store',[DepartmentController::class,'store'])->name('departments.store');
 Route::post('/department/{id}/update',[DepartmentController::class,'update'])->name('departments.update');
 Route::post('/department/{id}/delete',[DepartmentController::class,'delete'])->name('departments.delete');
 Route::get('/department/{id}/show',[DepartmentController::class,'show'])->name('departments.show');
