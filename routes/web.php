@@ -1,9 +1,12 @@
 <?php
 
+
+use App\Models\Department;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserManagementController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SkillController;
 
 /*
@@ -28,6 +31,14 @@ use App\Http\Controllers\SkillController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/department/index',[DepartmentController::class,'index'])->name('departments.index');
+Route::get('/department/{id}/edit',[DepartmentController::class,'edit'])->name('departments.edit');
+Route::get('/department/create',[DepartmentController::class,'create'])->name('departments.create');
+Route::post('/department/store',[DepartmentController::class,'store'])->name('departments.store');
+Route::post('/department/{id}/update',[DepartmentController::class,'update'])->name('departments.update');
+Route::post('/department/{id}/delete',[DepartmentController::class,'delete'])->name('departments.delete');
+Route::get('/department/{id}/show',[DepartmentController::class,'show'])->name('departments.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
