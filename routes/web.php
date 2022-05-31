@@ -22,14 +22,15 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::group(["middleware" => ["auth", "can:leader-higher"]], function(){
-    Route::get('/users', [UserManagementController::class, "index"])->name("user-manage.index");
-    Route::get('/users/{id}', [UserManagementController::class, "show"])->name("user-manage.show");
-    Route::get('/user/create', [UserManagementController::class, "create"])->name("user-manage.create");
-    Route::get('/user/store', [UserManagementController::class, "store"])->name("user-manage.store");
-    Route::get('/users/edit/{id}', [UserManagementController::class, "edit"])->name("user-manage.edit");
-    Route::get('/users/update/{id}', [UserManagementController::class, "update"])->name("user-manage.update");
-    Route::get('/users/delete/{id}', [UserManagementController::class, "delete"])->name("user-manage.delete");
+Route::controller(UserManagementController::class)->prefix("users")
+    ->middleware(["auth", "can:leader-higher"])->group(function(){
+        Route::get('/', "index")->name("user-manage.index");
+        Route::get('/{id}',"show")->name("user-manage.show")->where("id", "[0-9]+");
+        Route::get('/create', "create")->name("user-manage.create");
+        Route::get('/store', "store")->name("user-manage.store");
+        Route::get('/edit/{id}', "edit")->name("user-manage.edit");
+        Route::get('/update/{id}', "update")->name("user-manage.update");
+        Route::get('/delete/{id}', "delete")->name("user-manage.delete");
 });
 
 require __DIR__.'/auth.php';
