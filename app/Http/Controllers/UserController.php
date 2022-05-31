@@ -20,17 +20,17 @@ class UserController extends Controller
 	}
 	public function request(Request $request, $id){
 		$validated = $request->validate([
-			'*' => 'required|integer|min:1|max:10'
+			'*_skillpoint' => 'required|integer|min:1|max:10'
 		]);
 
 		$user = User::findOrFail($id);
 		foreach($user->skills as $skill){
-			$skill->pivot->pending_point = $request[$skill->name];
+			$skill->pivot->pending_point = $request[$skill->name . "_skillpoint"];
 			$skill->pivot->request_at    = Carbon::now();
 		}
 		
 		$user->save();
         session()->flash('flash_message', '申請しました');
-        return redirect()->route('users.skill');
+        return redirect()->route('users.skill', [ 'id' => $user->id ]);
 	}
 }
