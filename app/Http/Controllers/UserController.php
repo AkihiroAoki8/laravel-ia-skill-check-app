@@ -27,9 +27,10 @@ class UserController extends Controller
 		foreach($user->skills as $skill){
 			$skill->pivot->pending_point = $request[$skill->name . "_skillpoint"];
 			$skill->pivot->request_at    = Carbon::now();
+			// dd($skill->pivot->pending_point);
 		}
-		
 		$user->save();
+		$user->skills()->sync($id);
         session()->flash('flash_message', '申請しました');
         return redirect()->route('users.skill', [ 'id' => $user->id ]);
 	}
