@@ -12,7 +12,6 @@ class Skill extends Model
         'name',
     ];
 
-
     public function users()
     {
         return $this->belongsToMany(User::class);
