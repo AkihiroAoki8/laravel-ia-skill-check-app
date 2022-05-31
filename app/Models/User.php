@@ -44,7 +44,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function skills(){
-      return $this->belongsToMany(Skill::class)->withPivot('point')->withTimestamps();
+      return $this->belongsToMany(Skill::class)->withPivot('point', 'pending_point', 'request_at')->withTimestamps();
     }
  
     public function departments(){
