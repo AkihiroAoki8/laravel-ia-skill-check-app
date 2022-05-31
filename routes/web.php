@@ -52,6 +52,7 @@ Route::group(["middleware" => ["auth", "can:user-higher"]], function(){
 });
 Route::group(["middleware" => ["auth", "can:admin-only"]], function(){
     Route::get('/skills/create',[SkillController::class,'create'])->name('skills.create');
+    // コメント
     Route::post('/skills/store',[SkillController::class,'store'])->name('skills.store');
     Route::post('/skills/{id}/delete',[SkillController::class,'delete'])->name('skills.delete');
     Route::post('/skills/{id}/update',[SkillController::class,'update'])->name('skills.update');
