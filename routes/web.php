@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserManagementController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
+
+
+
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,5 +46,18 @@ Route::group(["middleware" => ["auth", "can:leader-higher"]], function(){
     Route::get('/users/update/{id}', [UserManagementController::class, "update"])->name("user-manage.update");
     Route::get('/users/delete/{id}', [UserManagementController::class, "delete"])->name("user-manage.delete");
 });
+
+Route::group(["middleware" => ["auth", "can:user-higher"]], function(){
+    Route::get('/skills/index',[SkillController::class,'index'])->name('skills.index');
+});
+Route::group(["middleware" => ["auth", "can:admin-only"]], function(){
+    Route::get('/skills/create',[SkillController::class,'create'])->name('skills.create');
+    Route::post('/skills/store',[SkillController::class,'store'])->name('skills.store');
+    Route::post('/skills/{id}/delete',[SkillController::class,'delete'])->name('skills.delete');
+    Route::post('/skills/{id}/update',[SkillController::class,'update'])->name('skills.update');
+    Route::get('/skills/{id}/edit',[SkillController::class,'edit'])->name('skills.edit');
+});
+
+
 
 require __DIR__.'/auth.php';
