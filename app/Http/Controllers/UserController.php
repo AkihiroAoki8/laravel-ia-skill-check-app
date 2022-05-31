@@ -24,13 +24,18 @@ class UserController extends Controller
 		]);
 
 		$user = User::findOrFail($id);
+
+		$skillArray = [];
 		foreach($user->skills as $skill){
-			$skill->pivot->pending_point = $request[$skill->name . "_skillpoint"];
-			$skill->pivot->request_at    = Carbon::now();
-			// dd($skill->pivot->pending_point);
+			$skillArray = $skillArray + [
+				$skill->id => [
+					'pending_point' => $request[$skill->name . "_skillpoint"],
+					'request_at'    => Carbon::now()
+				]
+			];
 		}
-		$user->save();
-		$user->skills()->sync($id);
+		$user->skills()->sync($skillArray);
+
         session()->flash('flash_message', '申請しました');
         return redirect()->route('users.skill', [ 'id' => $user->id ]);
 	}
