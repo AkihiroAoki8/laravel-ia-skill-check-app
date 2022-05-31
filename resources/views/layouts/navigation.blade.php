@@ -17,7 +17,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('skills.index')" :active="request()->routeIs('dashboard')">
                         {{ __('Skills') }}
                     </x-nav-link>
                 </div>
@@ -30,7 +30,7 @@
                 @endcan
                 @can("admin-only")
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('departments.index')" :active="request()->routeIs('dashboard')">
                         {{ __('Department') }}
                     </x-nav-link>
                 </div>
